@@ -22,7 +22,7 @@ if (place_meeting(x,y+1,o_walls)) and (key_jump)
 	vsp = -10;	
 }
 
-// horizontal collision
+// horizontal collision walls
 // while is loop over and over again untill not true
 if (place_meeting(x+hsp,y,o_walls)) //place_meeting checks if there is a collision between two objects
 {
@@ -33,12 +33,34 @@ if (place_meeting(x+hsp,y,o_walls)) //place_meeting checks if there is a collisi
 	hsp = 0;
 }
 
+
+
+//horizontal collsion box
+if (place_meeting(x+hsp,y,o_box)) //place_meeting checks if there is a collision between two objects
+{
+	while (!place_meeting(x+sign(hsp),y,o_box)) // ! is not
+	{
+		x = x + sign(hsp);
+	}
+	hsp = 0;
+}
+
 x = x + hsp;
 
-// vertical collision
+// vertical collision walls
 if (place_meeting(x,y+vsp,o_walls)) //place_meeting checks if there is a collision between two objects
 {
 	while (!place_meeting(x,y+sign(vsp),o_walls)) // ! is not
+	{
+		y = y + sign(vsp);
+	}
+	vsp = 0;
+}
+
+//vertical collision box
+if (place_meeting(x,y+vsp,o_box)) //place_meeting checks if there is a collision between two objects
+{
+	while (!place_meeting(x,y+sign(vsp),o_box)) // ! is not
 	{
 		y = y + sign(vsp);
 	}
